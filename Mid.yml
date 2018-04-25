@@ -1,0 +1,7 @@
+---
+- hosts: mq
+  gather_facts: false
+  vars: 
+    - services: [rabbitmq-server]
+  tasks: 
+    - include: tasks.yml

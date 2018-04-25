@@ -1,0 +1,56 @@
+---
+- name: stop domain with command
+  shell: source ~/.bash_profile && source /etc/profile && asadmin stop-domain {{item}}
+  with_items: 
+    - "{{domains}}"
+  async: 20
+  poll: 5
+  tags: 
+    - stopdomain
+- name: stop service with command
+  service: name={{item}} state=stopped
+  with_items: 
+    - "{{services}}"
+  async: 20
+  poll: 5
+  tags:
+    - stopservice
+- name: just kill domain
+  shell: ps -ef|grep {{item}}|grep -v grep|awk '{print $2}'|xargs kill -9
+  with_items: 
+    - "{{domains}}"
+  async: 1000
+  poll: 0
+  tags: 
+    - killdomain
+- name: just kill server
+  shell: ps -ef|grep {{item}}|grep -v grep|awk '{print $2}'|xargs kill -9
+  with_items: 
+    - "{{services}}"
+  async: 1000
+  poll: 0
+  tags: 
+    - killserver
+- name: start domain
+  shell: source ~/.bash_profile && source /etc/profile && nohup asadmin start-domain {{item}} &
+  with_items: 
+    - "{{domains}}"
+  async: 1000
+  poll: 0
+  tags:
+    - startdomain
+- name: start service
+  service: name={{item}} state=started
+  with_items: 
+    - "{{services}}"
+  async: 20
+  poll: 5
+  tags:
+    - startservice
+# - name: check on fire and forget task
+  # async_status: jid={{ tasks_sleeper.ansible_job_id }}
+  # register: job_result
+  # until: job_result.finished
+  # retries: 30
+  # tags: 
+    # - stopdomain

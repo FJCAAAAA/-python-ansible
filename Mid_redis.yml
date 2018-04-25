@@ -1,0 +1,18 @@
+---
+- hosts: redis
+  gather_facts: false
+  vars: 
+    - services: [redis-server]
+  tasks: 
+    - name: just kill server
+      shell: ps -ef|grep {{item}}|grep -v grep|awk '{print $2}'|xargs kill -9
+      with_items: 
+        - "{{services}}"
+      async: 20
+      poll: 5
+      tags: killredis
+    - name: start redis-server
+      shell: redis-server /usr/local/redis/redis-4.0.2/redis.conf
+      async: 20
+      poll: 5
+      tags: startredis

@@ -1,0 +1,15 @@
+---
+- hosts: core
+  gather_facts: false
+  remote_user: sumapay25
+  vars: 
+    - domains: [domain8]
+  tasks: 
+    - include: tasks.yml
+- hosts: sch
+  gather_facts: false
+  remote_user: glassfish
+  vars: 
+    - domains: [domain2]
+  tasks: 
+    - include: tasks.yml

@@ -1,0 +1,29 @@
+---
+- hosts: app
+  gather_facts: false
+  remote_user: glassfish
+  vars: 
+    - domains: [domain1]
+  tasks: 
+    - include: tasks.yml
+- hosts: app
+  gather_facts: false
+  remote_user: sumapay
+  vars: 
+    - domains: [domain4,domain5]
+  tasks: 
+    - include: tasks.yml
+- hosts: biz
+  gather_facts: false
+  remote_user: sumapay
+  vars: 
+    - domains: [domain1,domain2,domain3,domain5,domain6,domain7]
+  tasks: 
+    - include: tasks.yml
+- hosts: core
+  gather_facts: false
+  remote_user: sumapay25
+  vars: 
+    - domains: [domain1,domain3,domain5]
+  tasks: 
+    - include: tasks.yml
