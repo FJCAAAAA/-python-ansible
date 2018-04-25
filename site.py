@@ -34,8 +34,8 @@ bizbase_switch='data/bizbase_switch'
 def pass_check():
     with open('.password.txt','r') as f:
         password=f.read()
-    # my_pass=getpass.getpass("请输入密码：")
-    my_pass = input("请输入密码：")
+    my_pass=getpass.getpass("请输入密码：")
+    #my_pass = input("请输入密码：")
     if my_pass == password:
         print ("密码正确，开启盲启流程。")
         time.sleep(3)
