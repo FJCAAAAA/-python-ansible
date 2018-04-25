@@ -1,0 +1,4 @@
+http://172.16.8.3:9696/datasourceMonitor/dbMonitorServlet
+http://172.16.8.5:9696/datasourceMonitor/dbMonitorServlet
+http://172.16.8.7:9696/datasourceMonitor/dbMonitorServlet
+http://172.16.8.9:9090/datasourceMonitor/dbMonitorServlet

@@ -1,0 +1,4 @@
+http://172.16.8.3:9696/des/config?type=check
+http://172.16.8.5:9696/des/config?type=check
+http://172.16.8.7:9696/des/config?type=check
+http://172.16.8.9:9090/scheduleControl/config?type=check
