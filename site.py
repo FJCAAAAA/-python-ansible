@@ -2,6 +2,7 @@
 #-*- coding:utf-8 -*-
 import sys
 import os
+import hashlib
 import time
 import traceback
 import getpass
@@ -32,11 +33,11 @@ bizbase_switch='data/bizbase_switch'
 
 #密码验证函数
 def pass_check():
-    with open('.password.txt','r') as f:
-        password=f.read()
-    my_pass=getpass.getpass("请输入密码：")
-    #my_pass = input("请输入密码：")
-    if my_pass == password:
+    password='4bfbc71fc8e101d536aac98c4d6e6604'
+    my_pass=str(getpass.getpass("请输入密码："))
+    m=hashlib.md5()
+    m.update(my_pass.encode('utf8'))
+    if m.hexdigest() == password:
         print ("密码正确，开启盲启流程。")
         time.sleep(3)
     else:
